@@ -1,0 +1,26 @@
+CREATE TABLE IF NOT EXISTS roles(
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS rooms(
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(150),
+    owner VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS persons(
+    id SERIAL PRIMARY KEY NOT NULL,
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(150),
+    role_id INT NOT NULL REFERENCES roles(id),
+    room_id INT REFERENCES rooms(id)
+);
+
+CREATE TABLE IF NOT EXISTS messages(
+    id SERIAL PRIMARY KEY NOT NULL,
+    txt TEXT,
+    created TIMESTAMP WITHOUT TIME ZONE,
+    person_id INT NOT NULL REFERENCES persons(id),
+    room_id INT NOT NULL REFERENCES rooms(id)
+);
