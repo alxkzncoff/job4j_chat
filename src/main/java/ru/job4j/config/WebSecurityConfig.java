@@ -18,12 +18,12 @@ import ru.job4j.service.UserDetailServiceImpl;
 import static ru.job4j.filter.JWTAuthenticationFilter.SIGN_UP_URL;
 
 @EnableWebSecurity
-public class WebSecurity extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailServiceImpl userDetailService;
     private final BCryptPasswordEncoder encoder;
 
-    public WebSecurity(UserDetailServiceImpl userDetailService, BCryptPasswordEncoder encoder) {
+    public WebSecurityConfig(UserDetailServiceImpl userDetailService, BCryptPasswordEncoder encoder) {
         this.userDetailService = userDetailService;
         this.encoder = encoder;
     }
@@ -50,5 +50,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
+    }
+
+    @Bean
+    public static BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
