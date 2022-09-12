@@ -15,11 +15,6 @@ public class Job4jChatApplication extends SpringBootServletInitializer {
         return application.sources(Job4jChatApplication.class);
     }
 
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper();
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(Job4jChatApplication.class, args);
         System.out.println("URL: http://localhost:8080/");
