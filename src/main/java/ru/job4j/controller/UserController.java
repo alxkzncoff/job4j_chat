@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<Person> signUp(@RequestBody Person person) {
+    public ResponseEntity<Person> signUp(@Valid @RequestBody Person person) {
         var username = person.getUsername();
         var password = person.getPassword();
         if (username == null || password == null) {

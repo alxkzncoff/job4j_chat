@@ -11,6 +11,7 @@ import ru.job4j.service.RoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,7 +34,7 @@ public class RoomController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Room> create(@RequestBody Room room) {
+    public ResponseEntity<Room> create(@Valid @RequestBody Room room) {
         roomNameValidation(room);
         room.setOwner(personService
                 .findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
@@ -47,7 +48,7 @@ public class RoomController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<Void> update(@RequestBody Room room) {
+    public ResponseEntity<Void> update(@Valid @RequestBody Room room) {
         roomNameValidation(room);
         room.setOwner(personService
                 .findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())

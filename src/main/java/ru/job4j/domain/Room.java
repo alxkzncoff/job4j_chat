@@ -3,6 +3,8 @@ package ru.job4j.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Getter
@@ -16,8 +18,12 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(message = "Id must be non null")
     private int id;
+
+    @NotBlank(message = "Name must be not empty")
     private String name;
+
     private String owner;
 
     @Override

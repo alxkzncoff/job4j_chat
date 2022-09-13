@@ -12,6 +12,7 @@ import ru.job4j.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class MessageController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<HashMap<Object, Object>> send(@RequestBody Message message) {
+    public ResponseEntity<HashMap<Object, Object>> send(@Valid @RequestBody Message message) {
         if (message.getTxt() == null) {
             throw new NullPointerException("Message text mustn't be empty.");
         }

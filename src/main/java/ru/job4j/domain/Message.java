@@ -3,6 +3,8 @@ package ru.job4j.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,7 +19,10 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(message = "Id must be non null")
     private int id;
+
+    @NotBlank(message = "Text must be not empty")
     private String txt;
 
     @Temporal(TemporalType.TIMESTAMP)

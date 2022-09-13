@@ -3,6 +3,8 @@ package ru.job4j.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Getter
@@ -16,12 +18,18 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(message = "Id must be non null")
     private int id;
+
+    @NotBlank(message = "Username must be not empty")
     private String username;
+
+    @NotBlank(message = "Password must be not empty")
     private String password;
 
     @ManyToOne
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "ROLE_ID_FK"))
+    @NotNull(message = "Role must be non null")
     private Role role;
 
     @ManyToOne
