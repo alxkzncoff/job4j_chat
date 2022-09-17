@@ -15,9 +15,14 @@
 - Apache Maven 3.8.3 или выше.
 
 1. Настройка postgreSQL. В терминале набрать следующие команды:
+
+- Ввести логин. Вместо username указать свой.
 ```bash
   psql --username <username>
-  <password>
+```
+- Ввести пароль.
+- Создать базу данных.
+```bash
   create database chat;
 ```
 
