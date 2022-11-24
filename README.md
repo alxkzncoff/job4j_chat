@@ -46,7 +46,7 @@ docker-compose up --build
 - `POST /login` - авторизация пользователя.
 - `PUT /users/joinRoom/{name}` - добавляет текущего пользователя в комнату, где name - имя комнаты.
 
-## Комнаты
+### Комнаты
 
 - `GET /rooms/all` - получить список всех комнат.
 - `GET /rooms/id/{id}` - получить комнату по id, где id - идентификационный номер комнаты.
@@ -56,13 +56,49 @@ docker-compose up --build
 - `DELETE /rooms/{id}` - удалить комнату по id, где id - идентификационный
 номер комнаты. 
 
-## Сообщения
+### Сообщения
 
 - `GET /messages/` - получить все сообщения.
 - `GET /messages/roomId/{id}` - получить все сообщения в комнате по id, где id - идентификационный номер комнаты.
 - `GET /messages/roomName/{name}` - получить все сообщения в комнате по name, где name - имя комнаты.
 - `POST /messages/` - отправить сообщение. Пользователь должен быть авторизован. Сообщение закрепляется за комнатой,
 в которой пользователь находится в данный момент.
+
+### Примеры curl запросов
+
+- Регистрация нового пользователя
+
+```
+curl --location --request POST 'http://localhost:8080/users/sign-up' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "newuser",
+    "password": "password",
+    "role": {
+        "id": "2"
+    }
+}'
+```
+
+- Авторизация
+
+```
+curl --location --request POST 'http://localhost:8080/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "newuser",
+    "password": "password"
+}'
+```
+
+- Получить список всех пользователей. Необходима авторизация.
+
+```
+curl --location --request GET 'http://localhost:8080/users/all' \
+--header 'Authorization: Bearer <your bearer token>
+```
+
+где ```<your bearer token>``` токен авторизированного пользователя.
 
 ## Технологии
 
