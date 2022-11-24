@@ -91,14 +91,32 @@ curl --location --request POST 'http://localhost:8080/login' \
 }'
 ```
 
-- Получить список всех пользователей. Необходима авторизация.
+- Получить список всех пользователей. Требуется авторизация.
 
 ```
 curl --location --request GET 'http://localhost:8080/users/all' \
---header 'Authorization: Bearer <your bearer token>
+--header 'Authorization: Bearer <your bearer token>'
 ```
 
 где ```<your bearer token>``` токен авторизированного пользователя.
+
+- Создать комнату. Требуется авторизация.
+
+```
+curl --location --request POST 'http://localhost:8080/rooms/' \
+--header 'Authorization: Bearer <your bearer token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "room1"
+}'
+```
+
+- Добавить текущего пользователя в комнату. Требуется авторизация.
+
+```
+curl --location --request PUT 'http://localhost:8080/users/joinRoom/room1' \
+--header 'Authorization: Bearer <your bearer token>'
+```
 
 ## Технологии
 
