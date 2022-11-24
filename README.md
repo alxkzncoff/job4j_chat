@@ -10,30 +10,26 @@
 
 Для корректной работы приложения необходимо установить следующие программы:
 
-- Java 17 или выше;
-- PostgreSQL 14 или выше;
-- Apache Maven 3.8.3 или выше.
+- [Docker](https://docs.docker.com/engine/install/)
+- [Docker-compose](https://docs.docker.com/compose/install/)
 
-1. Настройка postgreSQL. В терминале набрать следующие команды:
+1. Запуск проекта с помощью Docker:
 
-- Ввести логин. Вместо username указать свой.
-```bash
-  psql --username <username>
+Скопировать себе проект:
 ```
-- Ввести пароль.
-- Создать базу данных.
-```bash
-  create database chat;
+git clone https://github.com/alxkzncoff/job4j_chat.git
 ```
 
-2. Запуск при помощи maven. В терминале набрать следующие команды:
+Перейти в директорию проекта:
 ```
-  mvn spring-boot:run
+cd <path>/job4j_chat
 ```
 
-При необходимости запустить liquibase для создания таблиц в БД.
+где ```path``` путь до проекта.
+
+Собрать контейнер и запустить:
 ```
-  mvn liquibase:update
+docker-compose up --build
 ```
 
 ## Команды
